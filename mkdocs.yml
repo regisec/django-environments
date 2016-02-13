@@ -1,0 +1,9 @@
+site_name: Django Environments
+site_url: http://www.django-environments.org/
+site_description: Django Environments - It can be simple
+
+repo_url: https://github.com/regisec/django-environments
+
+markdown_extensions:
+ - toc:
+    anchorlink: True
