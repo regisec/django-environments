@@ -1,0 +1,2 @@
+class IncompatibleSettings(Exception):
+    pass
