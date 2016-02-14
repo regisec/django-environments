@@ -3,7 +3,7 @@
 *_In development_
 
 ---
-[![build-status-image]][travis]
+[![Build Status](https://travis-ci.org/regisec/django-environments.svg?branch=master)](https://travis-ci.org/regisec/django-environments)
 
 Django Environments is a powerful and smarter environment manager for django projects.
 
@@ -43,8 +43,3 @@ Then a new environment will appear in settings package as `<NAME>.py`
 To switch the project to another environment run the command
 
     python manage.py switch-environment <NAME>
-
-
-
-[build-status-image]: https://secure.travis-ci.org/regisec/django-environments.svg?branch=develop
-[travis]: http://travis-ci.org/regisec/django-environments?branch=develop
