@@ -8,21 +8,20 @@ python:
   - "3.5"
 
 env:
-    - TOX_ENV=py35-django19
-    - TOX_ENV=py34-django19
-    - TOX_ENV=py27-django19
-    - TOX_ENV=py34-django18
-    - TOX_ENV=py27-django18
+  - TOX_ENV=py35-django19
+  - TOX_ENV=py34-django19
+  - TOX_ENV=py27-django19
+  - TOX_ENV=py34-django18
+  - TOX_ENV=py27-django18
 
 matrix:
   fast_finish: true
 
 install:
-  - pip install tox
+  - pip install tox codecov
 
 script:
-    - tox -e $TOX_ENV
+  - tox -e $TOX_ENV
 
 after_success:
-    - pip install codecov
-    - codecov -e TOX_ENV
+  - codecov -e TOX_ENV
