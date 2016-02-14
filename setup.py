@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 from codecs import open
 from os import path
@@ -29,6 +30,6 @@ setup(
             'Programming Language :: Python :: 2',
             'Programming Language :: Python :: 3',
         ],
-        packages=find_packages(exclude=['docs', 'tests']),
+        packages=find_packages(exclude=['docs', 'test']),
         install_requires=[],
 )
