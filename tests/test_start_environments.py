@@ -21,11 +21,12 @@ ENVIRONMENT_SETTINGS_START_FILES = [
 ]
 
 
-class StarEnvironmentTestCase(unittest2.TestCase):
+class StartEnvironmentTestCase(unittest2.TestCase):
     def __test_django_create__(self):
         self.assertTrue(os.path.exists(DJANGO_TESTS_PROJECT_DIR))
 
     def setUp(self):
+        os.chdir(BASE_DIR)
         if os.path.exists(DJANGO_TESTS_PROJECT_DIR):
             shutil.rmtree(DJANGO_TESTS_PROJECT_DIR)
         elif not os.path.exists(TEST_ARENA_DIR):
@@ -37,7 +38,11 @@ class StarEnvironmentTestCase(unittest2.TestCase):
 
         self.__test_django_create__()
 
-    def test_structure(self):
+    def tearDown(self):
+        os.chdir(BASE_DIR)
+        shutil.rmtree(TEST_ARENA_DIR)
+
+    def test_happy_path(self):
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
         os.system("python manage.py start-environments")
         self.assertFalse(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_FILE_PATH))
@@ -45,3 +50,15 @@ class StarEnvironmentTestCase(unittest2.TestCase):
         for file_name in ENVIRONMENT_SETTINGS_START_FILES:
             path = os.path.join(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH, file_name)
             self.assertTrue(os.path.exists(path))
+
+    def test_happy_path_ignoring_develop(self):
+        os.chdir(DJANGO_TESTS_PROJECT_DIR)
+        os.system("python manage.py start-environments --ignore-develop")
+        self.assertFalse(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_FILE_PATH))
+        self.assertTrue(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH))
+        for file_name in ENVIRONMENT_SETTINGS_START_FILES:
+            path = os.path.join(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH, file_name)
+            if "develop" not in file_name:
+                self.assertTrue(os.path.exists(path))
+            else:
+                self.assertFalse(os.path.exists(path))
