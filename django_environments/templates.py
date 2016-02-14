@@ -24,7 +24,7 @@ All settings here will override another ones
 \"""
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 ENVIRONMENT_NAME = "{ENVIRONMENT_NAME}"
 ENVIRONMENT_VERSION_CODE = "{ENVIRONMENT_VERSION_CODE}"

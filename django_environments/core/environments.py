@@ -40,9 +40,17 @@ class EnvironmentStarter(BaseEnvironment):
     def setup_common(self):
         path = os.path.join(self.settings_module_path, "common.py")
         shutil.move(self.settings_file_path, path)
-        with open(path, "a") as f:
+        lines = []
+        with open(path, "r") as f:
             # TODO: SEARCH ANOTHER VERSION FIRST
-            f.write("\nVERSION = \"0.0.0\"\n")
+            for line in f.readlines():
+                if line.startswith("BASE_DIR"):
+                    line_data = "=".join([v.strip() for v in line.replace("\n", "").split("=")[1:]])
+                    line = "BASE_DIR = os.path.dirname({0})\n".format(line_data)
+                lines.append(line)
+        lines.append("\nVERSION = \"0.0.0\"\n")
+        with open(path, "w") as f:
+            f.writelines(lines)
 
     def run(self):
         self.validate()

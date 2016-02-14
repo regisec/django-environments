@@ -28,9 +28,7 @@ To start the **Django Environments** on you django project run the following com
 
     python manage.py start-environments
 
-_`--ignore-develop` to ignore the develop environment creation_
-
-Then your `settings.py` file will be replaced by a settings package where a _develop_ environment will be created as default.
+Then your `settings.py` file will be replaced by a settings package.
 
 ## Create an environment
 To create a new environment run the following command
