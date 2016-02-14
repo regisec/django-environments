@@ -1,24 +1,50 @@
-A sample Python project
-=======================
+# Django Environments
 
-A sample project that exists as an aid to the `Python Packaging User Guide
-<https://packaging.python.org>`_'s `Tutorial on Packaging and Distributing
-Projects <https://packaging.python.org/en/latest/distributing.html>`_.
+*_In development_
 
-This projects does not aim to cover best practices for Python project
-development as a whole. For example, it does not provide guidance or tool
-recommendations for version control, documentation, or testing.
+---
+[![build-status-image]][travis]
 
-----
+Django Environments is a powerful and smarter environment manager for django projects.
 
-This is the README file for the project.
+## Requirements
+- Django: 1.8 or 1.9
+- Python: 2.7, 3.4, 3.5
 
-The file should use UTF-8 encoding and be written using ReStructured Text. It
-will be used to generate the project webpage on PyPI and will be displayed as
-the project homepage on common code-hosting services, and should be written for
-that purpose.
+## Instalation
+To install the **Django Environments** you can use `pip` as bellow
 
-Typical contents for this file would include an overview of the project, basic
-usage examples, etc. Generally, including the project changelog in here is not
-a good idea, although a simple "What's New" section for the most recent version
-may be appropriate.
+    pip install django-environments
+
+Then add `'django_environments'` in your `INSTALLED_APPS` settings
+
+    INSTALLED_APPS = (
+        ...,
+        'django_environments',
+    )
+
+## Starting
+To start the **Django Environments** on you django project run the following command
+
+    python manage.py start-environments
+
+_`--ignore-develop` to ignore the develop environment creation_
+
+Then your `settings.py` file will be replaced by a settings package where a _develop_ environment will be created as default.
+
+## Create an environment
+To create a new environment run the following command
+
+    python manage.py create-environment <NAME>
+
+Then a new environment will appear in settings package as `<NAME>.py`
+
+## Switch current environment
+To switch the project to another environment run the command
+
+    python manage.py switch-environment <NAME>
+
+
+
+[build-status-image]: https://secure.travis-ci.org/regisec/django-environments.svg?branch=develop
+[travis]: http://travis-ci.org/regisec/django-environments?branch=develop
