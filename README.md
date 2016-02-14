@@ -3,7 +3,8 @@
 *_In development_
 
 ---
-[![Build Status](https://travis-ci.org/regisec/django-environments.svg?branch=master)](https://travis-ci.org/regisec/django-environments)
+[![Build Status](https://travis-ci.org/regisec/django-environments.svg?branch=develop)](https://travis-ci.org/regisec/django-environments)
+[![codecov.io](https://codecov.io/github/regisec/django-environments/coverage.svg?branch=develop)](https://codecov.io/github/regisec/django-environments?branch=develop)
 
 Django Environments is a powerful and smarter environment manager for django projects.
 
