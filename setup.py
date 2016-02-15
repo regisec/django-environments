@@ -19,7 +19,7 @@ setup(
             'Development Status :: 3 - Alpha',
             'Intended Audience :: Developers',
             'Framework :: Django',
-            'Topic :: Software Development :: Utilities',
+            'Topic :: Software Development',
             'License :: OSI Approved :: BSD License',
             'Programming Language :: Python',
             'Programming Language :: Python :: 2',
