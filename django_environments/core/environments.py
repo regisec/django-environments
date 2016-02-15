@@ -17,6 +17,9 @@ class BaseEnvironment:
         self.settings_file_path = os.path.join(settings_dir_path, settings_file_name)
         self.settings_module_path = os.path.join(settings_dir_path, "settings")
 
+    def build_environment_file_name(self, environment_name):
+        return "{0}.py".format(environment_name.replace(" ", "-").lower())
+
     def run(self):
         raise NotImplemented("The run() method must be implemented.")
 
@@ -67,7 +70,7 @@ class EnvironmentCreate(BaseEnvironment):
         BaseEnvironment.__init__(self, django_project_path)
         self.environment_name = " ".join([w.capitalize() for w in environment_name.split(" ")])
         self.environment_version_code = environment_version_code
-        self.environment_file_name = "{0}.py".format(environment_name)
+        self.environment_file_name = self.build_environment_file_name(environment_name)
         self.settings_environment_path = os.path.join(self.settings_module_path, self.environment_file_name)
 
     def validate(self):
@@ -87,3 +90,26 @@ class EnvironmentCreate(BaseEnvironment):
                                                VERSION=__version__,
                                                ENVIRONMENT_NAME=self.environment_name,
                                                ENVIRONMENT_VERSION_CODE=self.environment_version_code)
+
+
+class EnvironmentSwitch(BaseEnvironment):
+    def __init__(self, django_project_path, environment_name):
+        BaseEnvironment.__init__(self, django_project_path)
+        self.environment_name = " ".join([w.capitalize() for w in environment_name.split(" ")])
+        self.environment_file_name = self.build_environment_file_name(environment_name)
+        self.settings_environment_path = os.path.join(self.settings_module_path, self.environment_file_name)
+        self.settings_load_path = os.path.join(self.settings_module_path, "__load__.py")
+
+    def validate(self):
+        if not os.path.exists(self.settings_environment_path):
+            msg = "Environment not found."
+            raise exceptions.InvalidEnvironmentName(msg)
+
+    def run(self):
+        self.validate()
+        try:
+            os.remove(self.settings_load_path)
+        except OSError:
+            pass
+        finally:
+            shutil.copy(self.settings_environment_path, self.settings_load_path)
