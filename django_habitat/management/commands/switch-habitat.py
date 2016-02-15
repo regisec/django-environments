@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from django_environments.core.environments import EnvironmentCreate
+from django_habitat.core.environments import EnvironmentSwitch
 
 
 class Command(BaseCommand):
@@ -11,4 +11,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         from django.conf import settings
-        EnvironmentCreate(settings.BASE_DIR, options["name"]).run()
+        EnvironmentSwitch(settings.BASE_DIR, options["name"]).run()

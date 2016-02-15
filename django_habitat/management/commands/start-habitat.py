@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from django_environments.core.environments import EnvironmentStarter, EnvironmentCreate
+from django_habitat.core.environments import EnvironmentStarter, EnvironmentCreate
 
 
 class Command(BaseCommand):

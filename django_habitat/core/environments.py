@@ -2,7 +2,7 @@ import os
 import shutil
 import re
 
-from django_environments import exceptions, __version__, templates
+from django_habitat import exceptions, __version__, templates
 
 
 class BaseEnvironment:
@@ -64,7 +64,7 @@ class EnvironmentStarter(BaseEnvironment):
 
 class EnvironmentCreate(BaseEnvironment):
     file_name_validator = re.compile("^[\d\w_]+\.py$")
-    reserved_names = ["__init__.py", "__load__.py", "common.py"]
+    reserved_names = ["__init__.py", "__habitat__.py", "common.py"]
 
     def __init__(self, django_project_path, environment_name, environment_version_code=""):
         BaseEnvironment.__init__(self, django_project_path)
@@ -98,7 +98,7 @@ class EnvironmentSwitch(BaseEnvironment):
         self.environment_name = " ".join([w.capitalize() for w in environment_name.split(" ")])
         self.environment_file_name = self.build_environment_file_name(environment_name)
         self.settings_environment_path = os.path.join(self.settings_module_path, self.environment_file_name)
-        self.settings_load_path = os.path.join(self.settings_module_path, "__load__.py")
+        self.settings_load_path = os.path.join(self.settings_module_path, "__habitat__.py")
 
     def validate(self):
         if not os.path.exists(self.settings_environment_path):

@@ -44,7 +44,7 @@ class StartEnvironmentTestCase(unittest2.TestCase):
 
     def test_happy_path(self):
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
-        os.system("python manage.py start-environments")
+        os.system("python manage.py start-habitat")
         self.assertFalse(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_FILE_PATH))
         self.assertTrue(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH))
         for file_name in ENVIRONMENT_SETTINGS_START_FILES:
@@ -53,7 +53,7 @@ class StartEnvironmentTestCase(unittest2.TestCase):
 
     def test_happy_path_ignoring_develop(self):
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
-        os.system("python manage.py start-environments --ignore-develop")
+        os.system("python manage.py start-habitat --ignore-develop")
         self.assertFalse(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_FILE_PATH))
         self.assertTrue(os.path.exists(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH))
         for file_name in ENVIRONMENT_SETTINGS_START_FILES:

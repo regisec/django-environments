@@ -12,7 +12,7 @@ DJANGO_TESTS_PROJECT_NAME = "DjangoEnvironmentTests"
 DJANGO_TESTS_PROJECT_DIR = os.path.join(TEST_ARENA_DIR, DJANGO_TESTS_PROJECT_NAME)
 DJANGO_TESTS_PROJECT_SETTINGS_DIR = os.path.join(DJANGO_TESTS_PROJECT_DIR, DJANGO_TESTS_PROJECT_NAME)
 DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH = os.path.join(DJANGO_TESTS_PROJECT_SETTINGS_DIR, "settings")
-DJANGO_TESTS_PROJECT_ENVIRONMENT_FILE_PATH = os.path.join(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH, "__load__.py")
+DJANGO_TESTS_PROJECT_ENVIRONMENT_FILE_PATH = os.path.join(DJANGO_TESTS_PROJECT_SETTINGS_PACKAGE_PATH, "__habitat__.py")
 
 
 class CreateEnvironmentTestCase(unittest2.TestCase):
@@ -26,7 +26,7 @@ class CreateEnvironmentTestCase(unittest2.TestCase):
         os.system("django-admin startproject {project_name}".format(project_name=DJANGO_TESTS_PROJECT_NAME))
         setup_installed_apps(os.path.join(DJANGO_TESTS_PROJECT_DIR, DJANGO_TESTS_PROJECT_NAME))
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
-        os.system("python manage.py start-environments")
+        os.system("python manage.py start-habitat")
 
     def tearDown(self):
         os.chdir(BASE_DIR)
@@ -34,5 +34,5 @@ class CreateEnvironmentTestCase(unittest2.TestCase):
 
     def test_happy_path(self):
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
-        os.system("python manage.py switch-environment develop")
+        os.system("python manage.py switch-habitat develop")
         self.assertTrue(os.path.exists(DJANGO_TESTS_PROJECT_ENVIRONMENT_FILE_PATH))
