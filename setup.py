@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
-from codecs import open
 from os import path
 
-from django_environments import __version__
+from setuptools import setup, find_packages
+
+from django_habitat import __version__
 
 here = path.abspath(path.dirname(__file__))
 
 setup(
-        name='django-environments',
+        name='django-habitat',
         version=__version__,
         description='A powerful and smarter environment manager for django projects',
-        url='http://www.django-environments.org/',
+        url='https://github.com/regisec/django-habitat/',
         author='Régis Eduardo Crestani',
         author_email='regis.crestani@gmail.com',
         license='BSD',
@@ -19,7 +19,7 @@ setup(
             'Development Status :: 3 - Alpha',
             'Intended Audience :: Developers',
             'Framework :: Django',
-            'Topic :: Software Development :: Utilities',
+            'Topic :: Software Development',
             'License :: OSI Approved :: BSD License',
             'Programming Language :: Python',
             'Programming Language :: Python :: 2',

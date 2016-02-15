@@ -7,7 +7,7 @@ def setup_installed_apps(path):
     with open(settings_file_path, "r") as f:
         for line in f.readlines():
             if line.startswith("INSTALLED_APPS"):
-                line += "\t'django_environments',\n"
+                line += "\t'django_habitat',\n"
             lines.append(line)
     with open(settings_file_path, "w") as f:
         f.writelines(lines)

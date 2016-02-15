@@ -26,7 +26,7 @@ class CreateEnvironmentTestCase(unittest2.TestCase):
         os.system("django-admin startproject {project_name}".format(project_name=DJANGO_TESTS_PROJECT_NAME))
         setup_installed_apps(os.path.join(DJANGO_TESTS_PROJECT_DIR, DJANGO_TESTS_PROJECT_NAME))
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
-        os.system("python manage.py start-environments")
+        os.system("python manage.py start-habitat")
 
     def tearDown(self):
         os.chdir(BASE_DIR)
@@ -34,5 +34,5 @@ class CreateEnvironmentTestCase(unittest2.TestCase):
 
     def test_happy_path(self):
         os.chdir(DJANGO_TESTS_PROJECT_DIR)
-        os.system("python manage.py create-environment production")
+        os.system("python manage.py create-habitat production")
         self.assertTrue(os.path.exists(DJANGO_TESTS_PROJECT_ENVIRONMENT_FILE_PATH))

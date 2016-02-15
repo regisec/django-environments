@@ -1,8 +1,8 @@
-site_name: Django Environments
-site_url: http://www.django-environments.org/
-site_description: Django Environments - It can be simple
+site_name: Django Habitat
+site_url: https://github.com/regisec/django-habitat/
+site_description: Django Habitat - It can be simple
 
-repo_url: https://github.com/regisec/django-environments
+repo_url: https://github.com/regisec/django-habitat/
 
 markdown_extensions:
  - toc:
